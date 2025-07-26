@@ -6,6 +6,7 @@ import { MagicCard } from "@/components/ui/magic-card";
 import { Meteors } from "@/components/ui/meteors";
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
 import { Particles } from "@/components/ui/particles";
+import SplashCursor from "../components/ui/SplashCursor";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { motion } from "motion/react";
@@ -61,155 +62,157 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Navigation Header */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <AnimatedGradientText
-                className="text-2xl font-bold"
-                colors={["#ff6b6b", "#4ecdc4", "#45b7d1"]}
-                animationSpeed={3}
+    <>
+      <SplashCursor />
+      <div className="min-h-screen bg-black text-white">
+        {/* Navigation Header */}
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+          <div className="max-w-6xl mx-auto px-6 py-4">
+            <div className="flex justify-between items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
               >
-                SYLESH
-              </AnimatedGradientText>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="hidden md:flex gap-6"
-            >
-              {[
-                { name: 'Home', id: 'hero' },
-                { name: 'Skills', id: 'skills' },
-                { name: 'Projects', id: 'projects' },
-                { name: 'About', id: 'about' },
-                { name: 'Contact', id: 'contact' }
-              ].map((item, index) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="text-gray-300 hover:text-white transition-colors duration-300 font-medium"
+                <AnimatedGradientText
+                  className="text-2xl font-bold"
+                  colors={["#ff6b6b", "#4ecdc4", "#45b7d1"]}
+                  animationSpeed={3}
                 >
-                  {item.name}
-                </button>
-              ))}
-            </motion.div>
-
-            {/* Mobile Menu Button */}
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="md:hidden text-white"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <div className="w-6 h-6 flex flex-col justify-center items-center">
-                <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
-                <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-                <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
-              </div>
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden mt-4 pb-4 border-t border-gray-800"
-            >
-              <div className="flex flex-col gap-4 pt-4">
+                  SYLESH
+                </AnimatedGradientText>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="hidden md:flex gap-6"
+              >
                 {[
                   { name: 'Home', id: 'hero' },
                   { name: 'Skills', id: 'skills' },
                   { name: 'Projects', id: 'projects' },
                   { name: 'About', id: 'about' },
                   { name: 'Contact', id: 'contact' }
-                ].map((item) => (
+                ].map((item, index) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="text-gray-300 hover:text-white transition-colors duration-300 font-medium text-left"
+                    className="text-gray-300 hover:text-white transition-colors duration-300 font-medium"
                   >
                     {item.name}
                   </button>
                 ))}
-              </div>
-            </motion.div>
-          )}
-        </div>
-      </nav>
+              </motion.div>
 
-      {/* Background Particles */}
-      <Particles
-        className="fixed inset-0 pointer-events-none z-0"
-        config={{
-          count: 100,
-          colors: ["#3b82f6", "#8b5cf6", "#ef4444", "#10b981", "#f59e0b"],
-          size: { min: 1, max: 4 },
-          speed: 0.5,
-        }}
-      />
-
-      {/* Main Content */}
-      <main className="relative z-10">
-        {/* Hero Section */}
-        <section id="hero" className="relative min-h-screen flex items-center justify-center p-8 pt-20">
-          <Meteors number={30} />
-          
-          <div className="text-center z-20 max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="mb-6"
-            >
-              <AnimatedGradientText
-                className="text-6xl md:text-8xl font-black mb-4"
-                colors={["#ff6b6b", "#4ecdc4", "#45b7d1", "#ff6b6b"]}
-                animationSpeed={4}
+              {/* Mobile Menu Button */}
+              <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="md:hidden text-white"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                SYLESH
-              </AnimatedGradientText>
-            </motion.div>
+                <div className="w-6 h-6 flex flex-col justify-center items-center">
+                  <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
+                  <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                  <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
+                </div>
+              </motion.button>
+            </div>
 
-            <TextAnimate
-              className="text-xl md:text-3xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
-              animation="blurInUp"
-              by="word"
-              delay={0.5}
-            >
-              Full Stack Developer & Creative Technologist crafting digital experiences that push boundaries
-            </TextAnimate>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-wrap gap-6 justify-center mt-12"
-            >
-              <ShimmerButton
-                className="px-8 py-4 text-lg font-semibold"
-                shimmerColor="#3b82f6"
-                background="linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3))"
-                onClick={() => scrollToSection('projects')}
+            {/* Mobile Menu */}
+            {isMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden mt-4 pb-4 border-t border-gray-800"
               >
-                View My Work
-              </ShimmerButton>
-              
-              <ShimmerButton
-                className="px-8 py-4 text-lg font-semibold"
-                shimmerColor="#10b981"
+                <div className="flex flex-col gap-4 pt-4">
+                  {[
+                    { name: 'Home', id: 'hero' },
+                    { name: 'Skills', id: 'skills' },
+                    { name: 'Projects', id: 'projects' },
+                    { name: 'About', id: 'about' },
+                    { name: 'Contact', id: 'contact' }
+                  ].map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className="text-gray-300 hover:text-white transition-colors duration-300 font-medium text-left"
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </nav>
+
+        {/* Background Particles */}
+        <Particles
+          className="fixed inset-0 pointer-events-none z-0"
+          config={{
+            count: 100,
+            colors: ["#3b82f6", "#8b5cf6", "#ef4444", "#10b981", "#f59e0b"],
+            size: { min: 1, max: 4 },
+            speed: 0.5,
+          }}
+        />
+
+        {/* Main Content */}
+        <main className="relative z-10">
+          {/* Hero Section */}
+          <section id="hero" className="relative min-h-screen flex items-center justify-center p-8 pt-20">
+            <Meteors number={30} />
+            
+            <div className="text-center z-20 max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="mb-6"
+              >
+                <AnimatedGradientText
+                  className="text-6xl md:text-8xl font-black mb-4"
+                  colors={["#ff6b6b", "#4ecdc4", "#45b7d1", "#ff6b6b"]}
+                  animationSpeed={4}
+                >
+                  SYLESH
+                </AnimatedGradientText>
+              </motion.div>
+
+              <TextAnimate
+                className="text-xl md:text-3xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+                animation="blurInUp"
+                by="word"
+                delay={0.5}
+              >
+                Full Stack Developer & Creative Technologist crafting digital experiences that push boundaries
+              </TextAnimate>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+                className="flex flex-wrap gap-6 justify-center mt-12"
+              >
+                <ShimmerButton
+                  className="px-8 py-4 text-lg font-semibold"
+                  shimmerColor="#3b82f6"
+                  background="linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3))"
+                  onClick={() => scrollToSection('projects')}
+                >
+                  View My Work
+                </ShimmerButton>
+                
+                <ShimmerButton
+                  className="px-8 py-4 text-lg font-semibold"
+                  shimmerColor="#10b981"
                 background="linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(34, 197, 94, 0.3))"
                 onClick={() => scrollToSection('contact')}
               >
@@ -593,6 +596,7 @@ export default function Portfolio() {
           </div>
         </footer>
       </main>
-    </div>
+      </div>
+    </>
   );
 }
