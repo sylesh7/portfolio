@@ -6,7 +6,6 @@ import { MagicCard } from "@/components/ui/magic-card";
 import { Meteors } from "@/components/ui/meteors";
 import { NeonGradientCard } from "@/components/ui/neon-gradient-card";
 import { Particles } from "@/components/ui/particles";
-import SplashCursor from "../components/ui/SplashCursor";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { motion } from "motion/react";
@@ -63,7 +62,6 @@ export default function Portfolio() {
 
   return (
     <>
-      <SplashCursor />
       <div className="min-h-screen bg-black text-white">
         {/* Navigation Header */}
         <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
